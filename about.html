@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - Dr. Sharma's Care</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      overflow-x: hidden;
+      color: #4a2c47;
+      line-height: 1.65;
+    }
+
+    /* Background abstract shapes */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle at center, #f48fb1, transparent 70%);
+      border-radius: 50%;
+      filter: blur(150px);
+      z-index: 0;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      bottom: -150px;
+      right: -150px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at center, #f06292, transparent 70%);
+      border-radius: 50%;
+      filter: blur(180px);
+      z-index: 0;
+    }
+
+    /* Navigation bar */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255 255 255 / 0.8);
+      backdrop-filter: saturate(180%) blur(15px);
+      display: flex;
+      justify-content: center;
+      padding: 12px 0;
+      box-shadow: 0 2px 10px rgba(168, 36, 85, 0.15);
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 40px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      color: #880e4f;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #880e4f;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #f48fb1;
+      color: white;
+      box-shadow: 0 4px 12px rgba(244, 143, 177, 0.6);
+    }
+    nav ul li a.active {
+      background-color: #ad1457;
+      color: white;
+      box-shadow: 0 5px 15px rgba(173, 20, 87, 0.7);
+      pointer-events: none;
+      cursor: default;
+    }
+
+    header {
+      position: relative;
+      z-index: 10;
+      background: transparent;
+      padding: 25px 0 10px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      color: #ad1457;
+      user-select: none;
+    }
+
+    main.container {
+      position: relative;
+      max-width: 900px;
+      margin: 30px auto 80px;
+      background: rgba(255 255 255 / 0.85);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-radius: 20px;
+      padding: 40px 50px;
+      box-shadow: 0 12px 40px rgba(168, 36, 85, 0.25);
+      z-index: 10;
+    }
+
+    .about-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .about-img {
+      flex: 0 0 300px;
+      max-width: 300px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(168, 36, 85, 0.25);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      cursor: pointer;
+      filter: drop-shadow(0 6px 6px rgba(0,0,0,0.15));
+    }
+    .about-img:hover {
+      transform: scale(1.1) rotate(3deg);
+      box-shadow: 0 30px 60px rgba(168, 36, 85, 0.4);
+      filter: drop-shadow(0 12px 12px rgba(0,0,0,0.25));
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 3rem;
+      margin-bottom: 18px;
+      color: #880e4f;
+      letter-spacing: 1.5px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      color: #ad1457;
+      margin-top: 45px;
+      margin-bottom: 18px;
+      border-bottom: 3px solid #f48fb1;
+      padding-bottom: 8px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 22px;
+      color: #5e3a4a;
+    }
+
+    ul {
+      margin-left: 1.4rem;
+      color: #5e3a4a;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    ul li {
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+    ul li strong {
+      color: #880e4f;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      background: #f8bbd0;
+      color: #880e4f;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      user-select: none;
+      font-size: 1rem;
+      box-shadow: inset 0 1px 0 #fce4ec;
+    }
+
+    /* Responsive */
+    @media (max-width: 700px) {
+      main.container {
+        padding: 30px 25px;
+      }
+      .about-header {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .about-img {
+        max-width: 280px;
+        flex: none;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 2.6rem;
+      }
+      h2 {
+        font-size: 1.9rem;
+      }
+      nav ul {
+        gap: 25px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav aria-label="Primary Navigation">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active" aria-current="page">About Us</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="schedule.html">Schedule</a></li>
+  </ul>
+</nav>
+
+<header>About Dr. Sharma's Care</header>
+
+<main class="container" role="main">
+  <section class="about-header">
+    <img
+      src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=300&q=80"
+      alt="Dr. Neha Sharma"
+      class="about-img"
+      loading="lazy"
+      width="300"
+      height="400"
+    />
+    <div class="about-text">
+      <h1>Dr. Neha Sharma</h1>
+      <p>
+        Welcome to Dr. Sharma's Care! Founded by Dr. Neha Sharma, a compassionate and highly skilled medical professional, our clinic is dedicated to providing personalized and holistic healthcare solutions tailored to each patient's unique needs.
+      </p>
+      <p>
+        With over 12 years of experience in general medicine and wellness, Dr. Sharma is committed to improving the health and wellbeing of her community through expert diagnosis, innovative treatments, and preventive care.
+      </p>
+    </div>
+  </section>
+
+  <h2>Education & Qualifications</h2>
+  <ul>
+    <li><strong>MBBS</strong> - All India Institute of Medical Sciences (AIIMS), New Delhi (2007 - 2012)</li>
+    <li><strong>MD in General Medicine</strong> - Postgraduate Institute of Medical Education and Research (PGIMER), Chandigarh (2012 - 2015)</li>
+    <li><strong>Certified in Lifestyle Medicine</strong> - American College of Lifestyle Medicine (2020)</li>
+    <li>Advanced training in <em>Diabetes Management, Hypertension, and Preventive Care</em></li>
+  </ul>
+
+  <h2>Professional Experience</h2>
+  <p>Dr. Sharma has worked in various renowned hospitals and health centers across India, including:</p>
+  <ul>
+    <li>Senior Resident at Fortis Hospital, New Delhi (2015-2017)</li>
+    <li>Consultant Physician at Max Healthcare, Gurugram (2017-2020)</li>
+    <li>Founder & Lead Physician at Dr. Sharma's Care Clinic (2020 - Present)</li>
+  </ul>
+  <p>
+    Her expertise spans across internal medicine, chronic disease management, women's health, and preventive healthcare, ensuring a comprehensive approach to patient care.
+  </p>
+
+  <h2>Our Mission</h2>
+  <p>
+    At Dr. Sharma's Care, our mission is to empower patients through education, compassionate care, and evidence-based treatments. We believe in fostering a collaborative environment where patients feel heard, respected, and supported in their health journey.
+  </p>
+
+  <h2>Community Involvement</h2>
+  <p>
+    Dr. Sharma is deeply involved in community health initiatives, organizing free health camps, wellness workshops, and awareness drives about lifestyle diseases and mental health. She is also an active speaker at national health conferences and contributes regularly to medical journals.
+  </p>
+
+  <h2>Contact Information</h2>
+  <p>For appointments and consultations, please reach out to us:</p>
+  <ul>
+    <li>Phone: +91 98765 43210</li>
+    <li>Email: info@drsharmascare.com</li>
+    <li>Address: 123 Wellness Street, New Delhi, India</li>
+  </ul>
+</main>
+
+<footer>
+  &copy; 2025 Dr. Sharma's Care. All rights reserved.
+</footer>
+
+</body>
+</html>
+

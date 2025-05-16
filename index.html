@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dr. Sharma's Care - Women's Health Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f6d1d8 0%, #f8b4bb 40%, #f17c9a 75%, #d94f73 100%);
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(255 255 255 / 0.2);
+      backdrop-filter: saturate(180%) blur(10px);
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-size: 2.5em;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 14px;
+      font-weight: 600;
+      font-size: 1.1em;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    nav a:hover,
+    nav a:focus {
+      background-color: #fff0f3;
+      color: #d94f73;
+      outline: none;
+    }
+
+    /* Hero section with beautiful background + overlay */
+    .hero {
+      position: relative;
+      color: white;
+      text-align: center;
+      padding: 120px 20px 100px;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* Dark overlay */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(217,79,115,0.85) 0%, rgba(241,124,154,0.8) 50%, rgba(248,180,187,0.7) 100%);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero > * {
+      position: relative;
+      z-index: 1;
+    }
+    .hero h2 {
+      font-size: 3.2em;
+      margin-bottom: 25px;
+      text-shadow: 2px 3px 8px rgba(0,0,0,0.4);
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.3s;
+    }
+    .hero p {
+      font-size: 1.3em;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.5;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.3);
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.6s;
+    }
+    .btn {
+      background-color: #fff0f3;
+      color: #d94f73;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      width: fit-content;
+      margin: 0 auto;
+      box-shadow: 0 8px 20px rgba(217,79,115,0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(20px);
+      animation-delay: 0.9s;
+    }
+    .btn:hover,
+    .btn:focus {
+      background-color: white;
+      color: #b33356;
+      outline: none;
+      box-shadow: 0 12px 30px rgba(217,79,115,0.6);
+    }
+
+    /* Sections styling */
+    .section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+      margin-top: 40px;
+    }
+    .section h3 {
+      text-align: center;
+      color: #d94f73;
+      font-size: 2.2em;
+      margin-bottom: 35px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .services, .reasons, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+    .card {
+      background: #fff0f3;
+      box-shadow: 0 5px 15px rgba(217,79,115,0.2);
+      border-radius: 16px;
+      padding: 25px 20px;
+      flex: 1 1 280px;
+      max-width: 350px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(217,79,115,0.4);
+    }
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(217,79,115,0.25);
+    }
+    .card h4 {
+      margin-bottom: 15px;
+      font-size: 1.3em;
+      color: #d94f73;
+      font-weight: 700;
+    }
+    .card p {
+      font-size: 1em;
+      color: #555;
+      line-height: 1.4;
+    }
+
+    /* Doctor's Schedule styling */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+    .schedule-table th,
+    .schedule-table td {
+      border: 1px solid #d94f73;
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 600;
+      color: #d94f73;
+    }
+    .schedule-table th {
+      background-color: #ffe6ed;
+      font-size: 1.1em;
+    }
+    .schedule-table td {
+      font-weight: 400;
+      color: #333;
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: rgba(217,79,115,0.9);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: auto;
+      font-size: 0.95em;
+      box-shadow: 0 -5px 20px rgba(217,79,115,0.7);
+    }
+    footer h4 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+    footer p {
+      margin-bottom: 8px;
+    }
+    footer a {
+      color: #ffe1e7;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+    }
+    footer a:hover,
+    footer a:focus {
+      text-decoration: underline;
+      color: #fff;
+      outline: none;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2.2em;
+      }
+      .hero p {
+        font-size: 1.1em;
+      }
+      nav a {
+        margin: 0 8px;
+        font-size: 1em;
+        padding: 6px 8px;
+      }
+      .services, .reasons, .testimonials {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header style="background:#fff0f6; padding:10px 30px; display:flex; align-items:center; justify-content:space-between; font-family: Arial, sans-serif; font-size:14px; box-shadow: 0 2px 5px rgba(204, 0, 51, 0.2);">
+  <div>
+    <img src="https://via.placeholder.com/120x40?text=Logo" alt="Dr. Sharma's Care Logo" style="height:40px; object-fit: contain;">
+  </div>
+  <nav style="display:flex; align-items:center; gap:25px; color:#cc0033;">
+    <a href="https://www.youtube.com/yourchannel" target="_blank" rel="noopener" aria-label="YouTube Channel" style="color:#cc0033; text-decoration:none; font-weight:600;">YouTube</a>
+    <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener" aria-label="Twitter Profile" style="color:#cc0033; text-decoration:none; font-weight:600;">Twitter</a>
+    <span aria-label="Phone Number" style="color:#cc0033;">📞 +91 98765 43210</span>
+    <span aria-label="Location" style="color:#cc0033;">📍 123 Wellness Street, Health City</span>
+  </nav>
+</header>
+
+<header>
+  <h1>Dr. Sharma's Care</h1>
+  <nav>
+    <a href="services.html">Services</a>
+    <a href="#schedule">Doctor's Schedule</a>
+    <a href="blog.html">Blog</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" role="banner" aria-label="Welcome to Dr. Sharma's Care Women's Health Clinic">
+  <h2>Compassionate Women's Health Care in Your Community</h2>
+  <p>Expert obstetrician & gynecologist care focused on your wellness and comfort.</p>
+  <a href="#contact" class="btn" role="button" aria-label="Book an appointment">Book Appointment</a>
+</section>
+
+<section class="section" id="services" aria-labelledby="services-title">
+  <h3 id="services-title">Our Services</h3>
+  <div class="services">
+    <article class="card" role="article" aria-label="Prenatal Care">
+      <img src="https://images.unsplash.com/photo-1588776814546-cd3d77e8d3b4?auto=format&fit=crop&w=600&q=80" alt="Doctor examining pregnant woman" />
+      <h4>Prenatal Care</h4>
+      <p>Comprehensive care to support you and your baby throughout pregnancy.</p>
+    </article>
+    <article class="card" role="article" aria-label="Gynecological Exams">
+      <img src="https://images.unsplash.com/photo-1576765607927-c96d133c3441?auto=format&fit=crop&w=600&q=80" alt="Gynecological consultation" />
+      <h4>Gynecological Exams</h4>
+      <p>Routine screenings and examinations to maintain your reproductive health.</p>
+    </article>
+    <article class="card" role="article" aria-label="Menopause Management">
+      <img src="https://images.unsplash.com/photo-1579027988642-38ca0bc7b5e9?auto=format&fit=crop&w=600&q=80" alt="Happy middle aged woman" />
+      <h4>Menopause Management</h4>
+      <p>Personalized treatment plans to ease symptoms and improve quality of life.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="schedule" aria-labelledby="schedule-title" style="font-family: 'Segoe UI', sans-serif; padding: 30px; background: #fff0f5; border-radius: 16px; max-width: 600px; margin: auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+  <h3 id="schedule-title" style="color: #e91e63; text-align: center; font-size: 28px; margin-bottom: 20px;">
+    🩺 Dr. Sharma's Weekly Schedule
+  </h3>
+
+  <table class="schedule-table" role="table" aria-describedby="schedule-desc" style="width: 100%; border-collapse: collapse; background: #fff;">
+    <caption id="schedule-desc" class="sr-only">Weekly availability of Dr. Sharma</caption>
+    <thead>
+      <tr style="background-color: #f8bbd0; color: #880e4f;">
+        <th scope="col" style="padding: 12px; text-align: left;">Day</th>
+        <th scope="col" style="padding: 12px; text-align: left;">Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding: 12px; border-bottom: 1px solid #f8bbd0;">Monday</td><td style="padding: 12px; border-bottom: 1px solid #f8bbd0;">09:00 AM - 01:00 PM</td></tr>
+      <tr style="background-color: #fce4ec;"><td style="padding: 12px;">Tuesday</td><td style="padding: 12px;">11:00 AM - 04:00 PM</td></tr>
+      <tr><td style="padding: 12px; border-bottom: 1px solid #f8bbd0;">Wednesday</td><td style="padding: 12px; border-bottom: 1px solid #f8bbd0;">09:00 AM - 01:00 PM</td></tr>
+      <tr style="background-color: #fce4ec;"><td style="padding: 12px;">Thursday</td><td style="padding: 12px;">11:00 AM - 04:00 PM</td></tr>
+      <tr><td style="padding: 12px;">Friday</td><td style="padding: 12px;">09:00 AM - 01:00 PM</td></tr>
+      <tr style="background-color: #fce4ec;"><td style="padding: 12px; color: gray;">Saturday</td><td style="padding: 12px; color: gray;">Closed</td></tr>
+      <tr><td style="padding: 12px; color: gray;">Sunday</td><td style="padding: 12px; color: gray;">Closed</td></tr>
+    </tbody>
+  </table>
+
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="https://www.google.com/maps?q=123+Wellness+Street,+Health+City" target="_blank" style="display: inline-block; padding: 10px 20px; background-color: #e91e63; color: white; text-decoration: none; border-radius: 8px; transition: background 0.3s;">
+      📍 Find Us on Google Maps
+    </a>
+  </div>
+</section>
+
+
+<section class="section" id="reasons" aria-labelledby="reasons-title">
+  <h3 id="reasons-title">Why Choose Us?</h3>
+  <div class="reasons">
+    <article class="card" role="article" aria-label="Experienced Care">
+      <h4>Experienced Care</h4>
+      <p>Dr. Sharma brings over 15 years of experience specializing in women's health.</p>
+    </article>
+    <article class="card" role="article" aria-label="Personalized Treatment">
+      <h4>Personalized Treatment</h4>
+      <p>Tailored plans for every stage of life, ensuring your unique needs are met.</p>
+    </article>
+    <article class="card" role="article" aria-label="Compassionate Staff">
+      <h4>Compassionate Staff</h4>
+      <p>Our friendly team is dedicated to providing a comfortable and supportive environment.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="testimonials" aria-labelledby="testimonials-title" style="font-family: 'Segoe UI', sans-serif; background: #fff0f5; padding: 40px 20px; border-radius: 16px; max-width: 900px; margin: auto;">
+  <h3 id="testimonials-title" style="color: #e91e63; text-align: center; font-size: 28px; margin-bottom: 30px;">
+    🌟 Patient Testimonials
+  </h3>
+
+  <div class="testimonials" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+    
+    <!-- Testimonial 1 -->
+    <article class="card" role="article" aria-label="Testimonial from Sarah K." style="background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 280px; flex: 1;">
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <img src="https://i.pravatar.cc/40?img=12" alt="Sarah K." style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;">
+        <div>
+          <strong>Sarah K.</strong><br>
+          <span style="color: #999; font-size: 12px;">2 months ago</span>
+        </div>
+      </div>
+      <div style="color: #fbbc04; font-size: 16px; margin-bottom: 8px;">★★★★★</div>
+      <p style="color: #333;">"Dr. Sharma's care was exceptional during my pregnancy. I felt supported every step of the way!"</p>
+    </article>
+
+    <!-- Testimonial 2 -->
+    <article class="card" role="article" aria-label="Testimonial from Priya M." style="background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 280px; flex: 1;">
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <img src="https://i.pravatar.cc/40?img=14" alt="Priya M." style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;">
+        <div>
+          <strong>Priya M.</strong><br>
+          <span style="color: #999; font-size: 12px;">1 month ago</span>
+        </div>
+      </div>
+      <div style="color: #fbbc04; font-size: 16px; margin-bottom: 8px;">★★★★★</div>
+      <p style="color: #333;">"The staff is so kind and the treatments have really improved my health and confidence."</p>
+    </article>
+
+    <!-- Testimonial 3 -->
+    <article class="card" role="article" aria-label="Testimonial from Aisha T." style="background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 280px; flex: 1;">
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <img src="https://i.pravatar.cc/40?img=16" alt="Aisha T." style="border-radius: 50%; width: 40px; height: 40px; margin-right: 10px;">
+        <div>
+          <strong>Aisha T.</strong><br>
+          <span style="color: #999; font-size: 12px;">3 weeks ago</span>
+        </div>
+      </div>
+      <div style="color: #fbbc04; font-size: 16px; margin-bottom: 8px;">★★★★★</div>
+      <p style="color: #333;">"I highly recommend Dr. Sharma for anyone seeking expert gynecological care."</p>
+    </article>
+
+  </div>
+</section>
+
+
+<footer id="contact" aria-label="Contact information and social media links" style="background:#f8f8f8; padding:40px 20px; font-family: Arial, sans-serif; color:#333;">
+  <div style="max-width:1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px;">
+
+    <!-- Column 1 -->
+    <div style="flex: 1 1 300px; min-width: 250px;">
+      <h4 style="color:#2c3e50; margin-bottom: 10px;">Book Your Appointment Today</h4>
+      <p style="margin-bottom: 20px; line-height: 1.5;">No more waiting at the clinic, you can schedule your appointment here</p>
+
+      <h4 style="color:#2c3e50; margin-bottom: 10px;">Contact Us</h4>
+      <p>123 Wellness Street, Health City</p>
+      <p>Phone: <a href="tel:+919876543210" style="color:#2980b9; text-decoration:none;">+91 98765 43210</a></p>
+      <p>Email: <a href="mailto:contact@drsharmascare.com" style="color:#2980b9; text-decoration:none;">contact@drsharmascare.com</a></p>
+      <p>
+        <a href="#" aria-label="Facebook" style="color:#3b5998; text-decoration:none; margin-right:10px;">Facebook</a> |
+        <a href="#" aria-label="Twitter" style="color:#1da1f2; text-decoration:none; margin: 0 10px;">Twitter</a> |
+        <a href="#" aria-label="Instagram" style="color:#e1306c; text-decoration:none; margin-left:10px;">Instagram</a>
+      </p>
+    </div>
+
+    <!-- Column 2 -->
+    <div style="flex: 1 1 300px; min-width: 250px;">
+      <h4 style="color:#2c3e50; margin-bottom: 10px;">About Dr. Prajakta Sabale</h4>
+      <p style="line-height: 1.6; margin-bottom: 20px;">
+        Dr. Prajakta Sabale is reliable and one of the best Infertility Specialists & Gynecologists and Obstetricians in Waked, Hinjewadi, and Pimpri Chinchwad. She strives to provide quality care to her patients throughout their journey.
+      </p>
+
+      <h4 style="color:#2c3e50; margin-bottom: 10px;">Quick Links</h4>
+      <ul style="list-style:none; padding-left:0; line-height:1.8; margin:0;">
+        <li><a href="#" style="color:#2980b9; text-decoration:none;">About Us</a></li>
+        <li><a href="#" style="color:#2980b9; text-decoration:none;">Gynaecology Services</a></li>
+        <li><a href="#" style="color:#2980b9; text-decoration:none;">Infertility Services</a></li>
+        <li><a href="#" style="color:#2980b9; text-decoration:none;">Obstetrics Services</a></li>
+        <li><a href="#" style="color:#2980b9; text-decoration:none;">Blog</a></li>
+        <li><a href="#contact" style="color:#2980b9; text-decoration:none;">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3 -->
+    <div style="flex: 1 1 300px; min-width: 250px;">
+      <h4 style="color:#2c3e50; margin-bottom: 10px;">Farmazia Polyclinic</h4>
+      <p style="line-height: 1.5; margin-bottom: 10px;">
+        Farmazia Polyclinic & Pharmacy Store, near Aroma’s Hyderabad House, Phase 3, Hinjawadi Rajiv Gandhi Infotech Park, Hinjawadi, Pimpri-Chinchwad, Pune, Maharashtra 411057
+      </p>
+      <p>Phone Number: <a href="tel:+918042781385" style="color:#2980b9; text-decoration:none;">+91-8042781385</a></p>
+
+      <h4 style="color:#2c3e50; margin-top: 30px; margin-bottom: 10px;">Meditech Diagnostics and Polyclinic</h4>
+      <p style="line-height: 1.5; margin-bottom: 10px;">
+        Survey No 80, Shop No, Meditech Diagnostics and Polyclinic, Building B, Zinnia Elegans, Wakad, 09 and 10, Marunji Rd, opposite Reliance Smart Point, Hinjawadi, Pimpri-Chinchwad – 411057
+      </p>
+      <p>Phone Number: <a href="tel:+919511909784" style="color:#2980b9; text-decoration:none;">+91-9511909784</a></p>
+    </div>
+
+  </div>
+
+  <p style="text-align:center; margin-top: 40px; font-size: 0.9rem; color:#777;">
+    © 2025 Dr. Prajakta Sabale. All rights reserved.
+  </p>
+</footer>
+
+
+
+
+
+
+</body>
+</html>
+
